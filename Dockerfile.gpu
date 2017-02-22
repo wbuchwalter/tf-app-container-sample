@@ -1,4 +1,4 @@
-FROM gcr.io/tensorflow/tensorflow:latest
+FROM gcr.io/tensorflow/tensorflow:latest-gpu
 
 RUN apt-get update
 RUN apt-get install -qq build-essential libssl-dev libffi-dev python-dev curl
