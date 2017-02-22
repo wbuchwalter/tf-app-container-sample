@@ -21,7 +21,7 @@ def main(_):
     server.set_model(model)
     app.add_url_rule('/', view_func=server.server_running)
     app.add_url_rule('/predict', view_func=server.predict)
-    app.run(host= '0.0.0.0', port=5000)
+    app.run(host= '0.0.0.0', port=80)
   
 if __name__ == '__main__':
   tf.app.run()
