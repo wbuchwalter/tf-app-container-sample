@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: tensorflow-trainer
+  name: tensorflow-trainer
+spec:
+  template:
+    metadata:
+      name: tensorflow-trainer
+    spec:
+      containers:
+      - args:
+        - --train
+        image: wbuchwalter/tensorflow-server-cpu
+        name: tensorflow-trainer
+      restartPolicy: Never

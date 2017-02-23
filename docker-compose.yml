@@ -1,0 +1,12 @@
+version: '2'
+services:
+  cpu:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: wbuchwalter/tensorflow-server-cpu
+  gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile.gpu
+    image: wbuchwalter/tensorflow-server-gpu

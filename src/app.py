@@ -14,6 +14,7 @@ def main(_):
   if FLAGS.train:
     model.train()
     model.save()
+    sys.exit(0)
   else:
     model.restore()
     app = Flask(__name__)
@@ -22,6 +23,7 @@ def main(_):
     app.add_url_rule('/', view_func=server.server_running)
     app.add_url_rule('/predict', view_func=server.predict)
     app.run(host= '0.0.0.0', port=80)
+    sys.exit(0)
   
 if __name__ == '__main__':
   tf.app.run()

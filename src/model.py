@@ -1,6 +1,6 @@
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
-import helper
+import azure_blob_helper
 import os 
 
 save_dir="/tmp/ckp/"
@@ -49,14 +49,14 @@ class Model:
     save_path = saver.save(self.sess, os.path.join(save_dir, "model"))
     print("Model saved in file: %s" % save_path)
     if toblob:
-      helper.upload_checkpoint_files(save_dir)
+      azure_blob_helper.upload_checkpoint_files(save_dir)
       print("Model saved to blob")
   
   def restore(self, fromblob = True):
     if os.path.isdir(save_dir) == False:
       os.makedirs(save_dir)
     if fromblob:
-      helper.download_checkpoint_files(save_dir)
+      azure_blob_helper.download_checkpoint_files(save_dir)
     saver = tf.train.Saver()
     #saver = tf.train.import_meta_graph(os.path.join(save_dir, "model.meta"))
     saver.restore(self.sess, os.path.join(save_dir, "model"))
