@@ -1,0 +1,31 @@
+{
+  "id": "tf-server",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "wbuchwalter/tensorflow-server-cpu",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "hostPort": 0, "containerPort": 80, "servicePort": 10000 }
+      ],
+      "forcePullImage":true
+    }
+  },
+  "instances": 3,
+  "cpus": 1,
+  "mem": 256,
+  "healthChecks": [{
+      "protocol": "HTTP",
+      "path": "/",
+      "portIndex": 0,
+      "timeoutSeconds": 10,
+      "gracePeriodSeconds": 10,
+      "intervalSeconds": 2,
+      "maxConsecutiveFailures": 10
+  }],
+  "labels":{
+    "HAPROXY_GROUP":"external",
+    "HAPROXY_0_VHOST":"wibuch-agent.southcentralus.cloudapp.azure.com",
+    "HAPROXY_0_MODE":"http"
+  }
+}
