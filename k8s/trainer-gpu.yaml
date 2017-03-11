@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: tensorflow-trainer
+  name: tensorflow-trainer
+spec:
+  template:
+    metadata:
+      name: tensorflow-trainer
+    spec:
+      volumes:
+      - name: binaries
+        hostPath:
+          path: /usr/bin/
+      - name: libraries
+        hostPath:
+          path: /usr/lib/x86_64-linux-gnu
+      containers:
+      - args:
+        - --train
+        image: ritazh/tf-server-gpu
+        name: tensorflow-trainer
+        resources:
+          limits:
+            alpha.kubernetes.io/nvidia-gpu: 2
+        volumeMounts:
+        - mountPath: /usr/bin/
+          name: binaries
+        - mountPath: /usr/lib/x86_64-linux-gnu
+          name: libraries
+      restartPolicy: Never
