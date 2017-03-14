@@ -15,7 +15,7 @@ class Model:
 
   def train(self):
     # Import training data
-    mnist = input_data.read_data_sets('/tmp/tensorflow/mnist/input_data', one_hot=True)
+    mnist = input_data.read_data_sets('/app/MNIST_data/', one_hot=True)
 
     # Define loss and optimizer
     y_ = tf.placeholder(tf.float32, [None, 10])
@@ -42,7 +42,7 @@ class Model:
     prediction = self.sess.run(tf.nn.softmax(self.y), feed_dict)
     return prediction
   
-  def save(self, toblob = True):    
+  def save(self, toblob = True):  
     if os.path.isdir(save_dir) == False:
       os.makedirs(save_dir)
     saver = tf.train.Saver()

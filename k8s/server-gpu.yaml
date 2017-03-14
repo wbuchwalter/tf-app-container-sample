@@ -9,7 +9,7 @@ spec:
   - port: 80
     targetPort: 80
   selector:
-    run: tensorflow-server
+    app: tensorflow-server
   type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
