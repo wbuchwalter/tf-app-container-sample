@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: tensorflow-server
+  name: tensorflow-server
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: tensorflow-server
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tensorflow-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tensorflow-server
+    spec:
+      volumes:
+      - name: binaries
+        hostPath:
+          path: /usr/bin/
+      - name: libraries
+        hostPath:
+          path: /usr/lib/x86_64-linux-gnu
+      containers:
+      - name: tensorflow-server
+        image: ritazh/tf-server-gpu
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            alpha.kubernetes.io/nvidia-gpu: 2
+        volumeMounts:
+        - mountPath: /usr/bin/
+          name: binaries
+        - mountPath: /usr/lib/x86_64-linux-gnu
+          name: libraries
