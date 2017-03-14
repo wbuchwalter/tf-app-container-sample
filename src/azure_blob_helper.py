@@ -4,7 +4,9 @@ import os
 import sys
 
 def get_blob_service():
-  return BlockBlobService(account_name='wibuch', account_key='PACubDwiOYvTPW1zVseSeTmSe1Q5IAhapoAc5g4Wy1nxLdlAFFMOptaxFYMuUlxL9QR6cuR0bN3sp8DdkxvukA==')
+  storage_account_name = os.environ['STORAGE_ACCOUNT_NAME']
+  storage_account_key = os.environ['STORAGE_ACCOUNT_KEY']
+  return BlockBlobService(account_name=storage_account_name, account_key=storage_account_key)
 
 def upload_checkpoint_files(dir_path):
   delete_existing_blobs()
