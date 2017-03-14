@@ -25,6 +25,11 @@ spec:
     spec:
       containers:
       - name: tensorflow-server
-        image: wbuchwalter/tensorflow-server-cpu
+        image: ritazh/tf-server
+        env:
+        - name: STORAGE_ACCOUNT_NAME
+          value: 
+        - name: STORAGE_ACCOUNT_KEY
+          value:
         ports:
         - containerPort: 80

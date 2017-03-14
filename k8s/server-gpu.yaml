@@ -33,6 +33,11 @@ spec:
       containers:
       - name: tensorflow-server
         image: ritazh/tf-server-gpu
+        env:
+        - name: STORAGE_ACCOUNT_NAME
+          value: 
+        - name: STORAGE_ACCOUNT_KEY
+          value:
         ports:
         - containerPort: 80
         resources:

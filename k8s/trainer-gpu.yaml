@@ -21,6 +21,11 @@ spec:
         - --train
         image: ritazh/tf-server-gpu
         name: tensorflow-trainer
+        env:
+        - name: STORAGE_ACCOUNT_NAME
+          value: 
+        - name: STORAGE_ACCOUNT_KEY
+          value: 
         resources:
           limits:
             alpha.kubernetes.io/nvidia-gpu: 2

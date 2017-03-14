@@ -12,6 +12,11 @@ spec:
       containers:
       - args:
         - --train
-        image: wbuchwalter/tensorflow-server-cpu
+        image: ritazh/tf-server
         name: tensorflow-trainer
+        env:
+        - name: STORAGE_ACCOUNT_NAME
+          value: 
+        - name: STORAGE_ACCOUNT_KEY
+          value:
       restartPolicy: Never
