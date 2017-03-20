@@ -16,7 +16,7 @@
 Then make a GET request to `localhost:<port>/predict` to get the prediction
 
 ### Model save/restore
-TF checkpoint files will be saved to an Azure storage account defined in `azure-blob-helper.py`.
+TF checkpoint files will be saved to an Azure storage account provided by the environment variables `STORAGE_ACCOUNT_NAME` and `STORAGE_ACCOUNT_KEY`.
 
 ## Deploying using Kubernetes on Azure Container Service (ACS)
 
