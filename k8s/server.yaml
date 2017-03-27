@@ -33,3 +33,6 @@ spec:
           value:
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 1
